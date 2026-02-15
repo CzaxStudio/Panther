@@ -5,132 +5,205 @@ function runPanther() {
     outputBox.textContent = "";
 
     const lines = code.split("\n");
+    const variables = {};
 
-    for (let line of lines) {
+    let i = 0;
 
-        line = line.trim();
-        if (line === "" || line.startsWith("#")) continue;
+    function print(text) {
+        outputBox.textContent += text + "\n";
+    }
 
-        // ========================
-        // BASIC OUTPUT
-        // ========================
+    function evaluateExpression(expr) {
+
+        // Replace variable names with values
+        for (let key in variables) {
+            expr = expr.replaceAll(key, variables[key]);
+        }
+
+        try {
+            return eval(expr);
+        } catch {
+            return expr;
+        }
+    }
+
+    while (i < lines.length) {
+
+        let line = lines[i].trim();
+
+        if (line === "" || line.startsWith("#")) {
+            i++;
+            continue;
+        }
+
+        // ==========================
+        // VARIABLE ASSIGNMENT
+        // ==========================
+
+        if (line.includes("=") && !line.startsWith("If") && !line.startsWith("While") && !line.startsWith("For")) {
+            let parts = line.split("=");
+            let varName = parts[0].trim();
+            let value = parts.slice(1).join("=").trim();
+
+            if (value.startsWith('"') && value.endsWith('"')) {
+                value = value.slice(1, -1);
+            } else if (!isNaN(value)) {
+                value = Number(value);
+            } else {
+                value = evaluateExpression(value);
+            }
+
+            variables[varName] = value;
+            i++;
+            continue;
+        }
+
+        // ==========================
+        // COMPUTE
+        // ==========================
 
         if (line.startsWith("Compute(")) {
-            const match = line.match(/Compute\("(.*)"\)/);
-            if (match) outputBox.textContent += match[1] + "\n";
+            let match = line.match(/Compute\((.*)\)/);
+            if (match) {
+                let content = match[1];
+
+                if (content.startsWith('"') && content.endsWith('"')) {
+                    print(content.slice(1, -1));
+                } else {
+                    print(evaluateExpression(content));
+                }
+            }
+            i++;
+            continue;
         }
 
-        // ========================
-        // HASHING
-        // ========================
+        // ==========================
+        // IF CONDITION
+        // ==========================
 
-        else if (line.startsWith("HashSHA256")) {
-            outputBox.textContent += "[SIMULATED] SHA256 Hash Generated\n";
+        if (line.startsWith("If ")) {
+
+            let condition = line.substring(3).trim();
+            let result = evaluateExpression(condition);
+
+            i++;
+
+            if (!result) {
+                // Skip until Else or next block
+                while (i < lines.length && !lines[i].trim().startsWith("Else")) {
+                    i++;
+                }
+                if (lines[i] && lines[i].trim().startsWith("Else")) {
+                    i++;
+                }
+            }
+
+            continue;
         }
 
-        else if (line.startsWith("Base64Encode")) {
-            outputBox.textContent += "[SIMULATED] Encoded to Base64\n";
+        // ==========================
+        // WHILE LOOP
+        // ==========================
+
+        if (line.startsWith("While ")) {
+
+            let condition = line.substring(6).trim();
+            let loopStart = i + 1;
+
+            while (evaluateExpression(condition)) {
+
+                let j = loopStart;
+
+                while (j < lines.length && lines[j].trim() !== "") {
+                    executeLine(lines[j].trim());
+                    j++;
+                }
+            }
+
+            // Skip loop block
+            while (i < lines.length && lines[i].trim() !== "") {
+                i++;
+            }
+
+            continue;
         }
 
-        else if (line.startsWith("Base64Decode")) {
-            outputBox.textContent += "[SIMULATED] Decoded from Base64\n";
+        // ==========================
+        // FOR LOOP
+        // ==========================
+
+        if (line.startsWith("For ")) {
+
+            let match = line.match(/For (.*) = (.*) To (.*)/);
+
+            if (match) {
+                let varName = match[1].trim();
+                let start = Number(match[2]);
+                let end = Number(match[3]);
+
+                let loopStart = i + 1;
+
+                for (let val = start; val <= end; val++) {
+
+                    variables[varName] = val;
+
+                    let j = loopStart;
+
+                    while (j < lines.length && lines[j].trim() !== "") {
+                        executeLine(lines[j].trim());
+                        j++;
+                    }
+                }
+            }
+
+            while (i < lines.length && lines[i].trim() !== "") {
+                i++;
+            }
+
+            continue;
         }
 
-        // ========================
-        // NETWORK
-        // ========================
+        // ==========================
+        // SECURITY COMMAND SIMULATION
+        // ==========================
 
-        else if (line.startsWith("ResolveDNS")) {
-            outputBox.textContent += "[SIMULATED] DNS Resolved: 93.184.216.34\n";
+        if (line.startsWith("ResolveDNS")) {
+            print("[SIMULATED] DNS Resolved → 93.184.216.34");
         }
 
         else if (line.startsWith("PortScan")) {
-            outputBox.textContent += "[SIMULATED] Port OPEN\n";
-        }
-
-        else if (line.startsWith("ScanRangeFast")) {
-            outputBox.textContent += "[SIMULATED] Fast Scan Complete\n";
-        }
-
-        else if (line.startsWith("BannerGrab")) {
-            outputBox.textContent += "[SIMULATED] Apache/2.4.41\n";
-        }
-
-        else if (line.startsWith("CheckSecurityHeaders")) {
-            outputBox.textContent += "[SIMULATED] Missing X-Frame-Options\n";
-        }
-
-        else if (line.startsWith("WhoIs")) {
-            outputBox.textContent += "[SIMULATED] WHOIS data retrieved\n";
-        }
-
-        else if (line.startsWith("Traceroute")) {
-            outputBox.textContent += "[SIMULATED] 8 hops detected\n";
-        }
-
-        else if (line.startsWith("DetectService")) {
-            outputBox.textContent += "[SIMULATED] HTTP Service Detected\n";
-        }
-
-        else if (line.startsWith("ScanTopPorts")) {
-            outputBox.textContent += "[SIMULATED] Top Ports Scan Complete\n";
-        }
-
-        else if (line.startsWith("CheckRobots")) {
-            outputBox.textContent += "[SIMULATED] robots.txt Found\n";
-        }
-
-        else if (line.startsWith("CheckOpenRedirect")) {
-            outputBox.textContent += "[SIMULATED] No Open Redirect Detected\n";
-        }
-
-        // ========================
-        // DEFENSIVE
-        // ========================
-
-        else if (line.startsWith("ListListeningPorts")) {
-            outputBox.textContent += "[SIMULATED] Port 80, 443 Listening\n";
-        }
-
-        else if (line.startsWith("DetectSuspiciousProcesses")) {
-            outputBox.textContent += "[SIMULATED] No Suspicious Processes Found\n";
+            print("[SIMULATED] Port OPEN");
         }
 
         else if (line.startsWith("GenerateStrongPassword")) {
-            outputBox.textContent += "Generated Password: A9#kL2!xZ7$pQ1@M\n";
+            print("Generated Password → A9#kL2!xZ7$pQ1@M");
         }
 
-        else if (line.startsWith("GetPublicIP")) {
-            outputBox.textContent += "[SIMULATED] Public IP: 203.0.113.45\n";
-        }
-
-        else if (line.startsWith("CheckPortListening")) {
-            outputBox.textContent += "[SIMULATED] Port is Listening\n";
-        }
-
-        else if (line.startsWith("FileIntegrityCheck")) {
-            outputBox.textContent += "[SIMULATED] File Hash Verified\n";
-        }
-
-        else if (line.startsWith("ScanDirectoryHashes")) {
-            outputBox.textContent += "[SIMULATED] Directory Scan Complete\n";
-        }
-
-        // ========================
-        // LOOPS / CONDITIONS (Visual Only)
-        // ========================
-
-        else if (line.startsWith("If") || line.startsWith("Else") ||
-                 line.startsWith("While") || line.startsWith("For")) {
-            outputBox.textContent += "[Logic Executed]\n";
+        else if (line.startsWith("WhoIs")) {
+            print("[SIMULATED] WHOIS data retrieved");
         }
 
         else {
-            outputBox.textContent += "[Unknown Command] " + line + "\n";
+            print("[Unknown Command] " + line);
+        }
+
+        i++;
+    }
+
+    function executeLine(line) {
+        if (line.startsWith("Compute(")) {
+            let match = line.match(/Compute\((.*)\)/);
+            if (match) {
+                print(evaluateExpression(match[1]));
+            }
+        }
+
+        if (line.includes("=")) {
+            let parts = line.split("=");
+            let varName = parts[0].trim();
+            let value = evaluateExpression(parts[1].trim());
+            variables[varName] = value;
         }
     }
-}
-
-function clearOutput() {
-    document.getElementById("output").textContent = "";
-        }
+                    }
+    
