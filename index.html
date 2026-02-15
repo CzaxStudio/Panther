@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Panther Compiler</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🐆 Online Panther Compiler (Demo)</h1>
+
+    <textarea id="codeArea">
+Compute("=== Panther Demo ===")
+ResolveDNS example.com
+PortScan example.com 80
+GenerateStrongPassword 16
+    </textarea>
+
+    <button onclick="runPanther()">▶ Run</button>
+
+    <pre id="output"></pre>
+
+    <p class="note">
+        ⚠ This is a demo environment.  
+        Download the real Panther compiler for full power.
+    </p>
+</div>
+
+<script src="panther.js"></script>
+</body>
+</html>
