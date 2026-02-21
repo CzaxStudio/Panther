@@ -1,6 +1,17 @@
-# Panther
-**A Professional Cybersecurity Scripting Language**
 
+<p align="center">
+  <img src="PantherLang\Panther.png" width="320" alt="Panther Security Language Logo">
+</p>
+
+<h1 align="center">Panther</h1>
+
+<p align="center">
+  <strong>A High-Performance Cybersecurity Scripting Language</strong>
+</p>
+
+<p align="center">
+  Secure • Blazing fast • Easy
+</p>
  
 **Blazing fast**
 
