@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Panther — Cybersecurity Scripting Language</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="assets/panther-logo.png" class="logo">
+        <h1>Panther</h1>
+        <p class="tagline">Professional Cybersecurity Scripting Language</p>
+        <button id="downloadBtn"></button>
+    </header>
+
+    <section class="features">
+        <h2>Why Panther?</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Blazing Fast</h3>
+                <p>Compiled Go binary. 5–10x faster than Python.</p>
+            </div>
+
+            <div class="card">
+                <h3>Huge command support</h3>
+                <p>DNS recon, port scanning, OSINT tools built-in.</p>
+            </div>
+
+            <div class="card">
+                <h3>Zero Dependencies</h3>
+                <p>Single executable. No installations required.</p>
+            </div>
+
+            <div class="card">
+                <h3>🖥 Cross Platform</h3>
+                <p>Runs on Windows and Linux.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="code">
+        <h2>Quick Example</h2>
+        <pre>
+var target = "example.com";
+Print("Scanning " + target);
+Dns_Lookup(target);
+Scan_Port("8.8.8.8", 80);
+        </pre>
+    </section>
+
+    <footer>
+        © 2026 Panther Project — MIT Licensed
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
