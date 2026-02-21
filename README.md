@@ -87,5 +87,4 @@ Unauthorized use is strictly discouraged.
 MIT License
 
 **Enjoy!** 
-
-                -- Unknown Creator(Czax Studio)
+                                                Unknown Creator(Czax Studio)
