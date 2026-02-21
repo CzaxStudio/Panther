@@ -2,7 +2,7 @@
 **A Professional Cybersecurity Scripting Language**
 
  
-**Native Compiled Speed**
+**Blazing fast**
 
 **Single Standalone Executable**
 
