@@ -1,0 +1,141 @@
+// ===========================================
+// PANTHER CORE LANGUAGE - COMPLETE DEMO
+// ===========================================
+
+Print("=== CORE LANGUAGE FEATURES ===");
+
+// -------------------------------------------
+// 1. VARIABLES
+// -------------------------------------------
+Print("\n--- Variables ---");
+
+var stringVar = "Panther Language";
+var intVar = 42;
+var floatVar = 3.14159;
+var boolVar = true;
+const CONSTANT_VAR = 100;
+
+Print("String: " + stringVar);
+Print("Integer: " + intVar);
+Print("Float: " + floatVar);
+Print("Boolean: " + boolVar);
+Print("Constant: " + CONSTANT_VAR);
+
+// -------------------------------------------
+// 2. ARITHMETIC OPERATIONS
+// -------------------------------------------
+Print("\n--- Arithmetic ---");
+
+var x = 10;
+var y = 3;
+
+var sum = x + y;
+var difference = x - y;
+var product = x * y;
+var quotient = x / y;
+var modulus = x % y;
+
+Print(x + " + " + y + " = " + sum);
+Print(x + " - " + y + " = " + difference);
+Print(x + " * " + y + " = " + product);
+Print(x + " / " + y + " = " + quotient);
+Print(x + " % " + y + " = " + modulus);
+
+// -------------------------------------------
+// 3. STRING OPERATIONS
+// -------------------------------------------
+Print("\n--- String Operations ---");
+
+var firstName = "Panther";
+var lastName = "Sec";
+var fullName = firstName + " " + lastName;
+Print("Full Name: " + fullName);
+
+// -------------------------------------------
+// 4. IF/ELSE STATEMENTS
+// -------------------------------------------
+Print("\n--- If/Else Statements ---");
+
+var score = 85;
+
+If (score >= 90) {
+    Print("Grade A");
+} Else {
+    If (score >= 80) {
+        Print("Grade B");
+    } Else {
+        If (score >= 70) {
+            Print("Grade C");
+        } Else {
+            Print("Grade F");
+        }
+    }
+}
+
+// Nested if
+var age = 25;
+If (age >= 18) {
+    Print("Adult");
+    If (age >= 60) {
+        Print("Senior Citizen");
+    }
+} Else {
+    Print("Minor");
+}
+
+// -------------------------------------------
+// 5. LOOPS
+// -------------------------------------------
+Print("\n--- Loops ---");
+
+// While loop
+Print("While Loop:");
+var counter = 1;
+While (counter <= 3) {
+    Print("  Iteration " + counter);
+    counter = counter + 1;
+}
+
+// For loop
+Print("For Loop:");
+For (var i = 1; i <= 3; i = i + 1) {
+    Print("  Iteration " + i);
+}
+
+// Loop (simple counter)
+Print("Simple Loop:");
+Loop(3) {
+    Print("  Loop iteration");
+}
+
+// Nested loops
+Print("Nested Loops:");
+Loop(2) {
+    Print("  Outer loop");
+    Loop(2) {
+        Print("    Inner loop");
+    }
+}
+
+// -------------------------------------------
+// 6. INPUT/OUTPUT
+// -------------------------------------------
+Print("\n--- Input/Output ---");
+
+Accept(userName, "Enter your name: ");
+Print("Hello, " + userName + "!");
+
+Accept(userAge, "Enter your age: ");
+If (userAge >= 18) {
+    Print("You are an adult");
+} Else {
+    Print("You are a minor");
+}
+
+// -------------------------------------------
+// 7. SHOW ALL VARIABLES
+// -------------------------------------------
+Print("\n--- Current Variables ---");
+--vars
+
+Print("\n=== CORE LANGUAGE DEMO COMPLETE ===");

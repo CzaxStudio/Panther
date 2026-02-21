@@ -1,0 +1,28 @@
+// =====================================
+// Simple Calculator
+// =====================================
+
+Print("=== SIMPLE CALCULATOR ===");
+
+Accept(x, "Enter first number: ");
+Accept(y, "Enter second number: ");
+
+var a = x;
+var b = y;
+
+var sum = a + b;
+var difference = a - b;
+var product = a * b;
+
+Print("Sum: " + sum);
+Print("Difference: " + difference);
+Print("Product: " + product);
+
+If (b != 0) {
+    var quotient = a / b;
+    Print("Quotient: " + quotient);
+} Else {
+    Print("Cannot divide by zero");
+}
+
+Print("=== CALCULATION COMPLETE ===");

@@ -1,0 +1,11 @@
+WebFingerprint("example.com");
+HTTPSecurityAudit("example.com");
+PortProbe("scanme.nmap.org");
+DNSIntel("example.com");
+PasswordLeakCheck("password123");
+FileEntropy("sample.exe");
+BruteForceSimulation("admin", 10000);
+Compute("Done!");
+Phone_Info("+919009800061");
+Compute("The MD5 Result is");
+HashCompute("MYnAmeIsTaNMaYCZaX", "md5");

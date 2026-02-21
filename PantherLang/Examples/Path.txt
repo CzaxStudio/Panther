@@ -1,0 +1,22 @@
+Add Panther to Path
+
+Windows------- 
+
+powershell (run whatever is written at the bottom)
+
+# Add to PATH permanently
+$oldPath = [Environment]::GetEnvironmentVariable("Path", "User")
+$newPath = $oldPath + ";ENTER THE PATH WHERE YOU DOWNLOADED PANTHER"
+[Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+
+# Restart your terminal or run:
+$env:Path = [Environment]::GetEnvironmentVariable("Path", "User")
+
+Linux----------
+
+bash
+# Add to .bashrc (Linux) or .zshrc (Mac)
+echo 'export PATH=$PATH:ENTER THE PATH WHERE YOU DOWNLOADED PANTHER' >> ~/.bashrc
+
+# Reload
+source ~/.bashrc

@@ -1,0 +1,123 @@
+// ===========================================
+// PANTHER NETWORK RECONNAISSANCE - COMPLETE
+// ===========================================
+
+Print("=== NETWORK RECONNAISSANCE ===");
+
+// -------------------------------------------
+// TARGET SETUP
+// -------------------------------------------
+var targetDomain = "google.com";
+var targetIP = "8.8.8.8";
+var targetPhone = "+14155552671";
+var targetEmail = "admin@example.com";
+
+Print("Target Domain: " + targetDomain);
+Print("Target IP: " + targetIP);
+Print("");
+
+// -------------------------------------------
+// 1. DNS RECONNAISSANCE
+// -------------------------------------------
+Print("--- DNS Lookup ---");
+Dns_Lookup(targetDomain);
+
+Print("\n--- Reverse IP ---");
+Reverse_IP(targetIP);
+
+Print("\n--- DNS Intelligence ---");
+DNSIntel(targetDomain);
+
+// -------------------------------------------
+// 2. CONNECTIVITY TESTING
+// -------------------------------------------
+Print("\n--- Ping Test ---");
+Ping(targetIP);
+
+Print("\n--- Traceroute ---");
+Traceroute(targetDomain);
+
+// -------------------------------------------
+// 3. PORT SCANNING
+// -------------------------------------------
+Print("\n--- Port Scan (Individual) ---");
+Scan_Port(targetIP, 21);
+Scan_Port(targetIP, 22);
+Scan_Port(targetIP, 23);
+Scan_Port(targetIP, 25);
+Scan_Port(targetIP, 53);
+Scan_Port(targetIP, 80);
+Scan_Port(targetIP, 443);
+Scan_Port(targetIP, 3306);
+Scan_Port(targetIP, 3389);
+Scan_Port(targetIP, 8080);
+
+Print("\n--- Port Probe (Common Ports) ---");
+PortProbe(targetIP);
+
+Print("\n--- Network Scan Simulation ---");
+NetworkScan("192.168.1.0/24", [21,22,23,25,53,80,443]);
+
+// -------------------------------------------
+// 4. WEB RECONNAISSANCE
+// -------------------------------------------
+Print("\n--- HTTP Headers ---");
+HTTP_Headers(targetDomain);
+
+Print("\n--- URL Status ---");
+URL_Status("https://" + targetDomain);
+
+Print("\n--- SSL Certificate Info ---");
+SSL_Info(targetDomain);
+
+Print("\n--- Web Fingerprint ---");
+WebFingerprint(targetDomain);
+
+Print("\n--- HTTP Security Audit ---");
+HTTPSecurityAudit(targetDomain);
+
+// -------------------------------------------
+// 5. SUBDOMAIN ENUMERATION
+// -------------------------------------------
+Print("\n--- Subdomain Enumeration ---");
+Subdomain_Enum(targetDomain);
+
+// -------------------------------------------
+// 6. IP GEOLOCATION
+// -------------------------------------------
+Print("\n--- IP Information ---");
+IP_Info(targetIP);
+
+Print("\n--- GeoIP Location ---");
+GeoIP(targetIP);
+
+// -------------------------------------------
+// 7. WHOIS & DOMAIN INFO
+// -------------------------------------------
+Print("\n--- Whois Lookup ---");
+Whois(targetDomain);
+
+Print("\n--- Domain Age ---");
+DomainAge(targetDomain);
+
+// -------------------------------------------
+// 8. PHONE INTELLIGENCE
+// -------------------------------------------
+Print("\n--- Phone Information ---");
+Phone_Info(targetPhone);
+
+// -------------------------------------------
+// 9. EMAIL VERIFICATION
+// -------------------------------------------
+Print("\n--- Email Verification ---");
+EmailVerify(targetEmail);
+EmailVerify("invalid-email");
+EmailVerify("user@gmail.com");
+
+// -------------------------------------------
+// 10. FULL RECONNAISSANCE
+// -------------------------------------------
+Print("\n--- Full Reconnaissance ---");
+Recon(targetDomain);
+
+Print("\n=== NETWORK RECONNAISSANCE COMPLETE ===");

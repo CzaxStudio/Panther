@@ -1,0 +1,58 @@
+// ===========================================
+// PANTHER REPORTING & UTILITIES - COMPLETE
+// ===========================================
+
+Print("=== REPORTING & UTILITIES ===");
+
+// -------------------------------------------
+// 1. GATHER SOME DATA
+// -------------------------------------------
+Print("--- Gathering Test Data ---");
+
+var target = "google.com";
+Dns_Lookup(target);
+Scan_Port("8.8.8.8", 80);
+Phone_Info("+14155552671");
+
+// -------------------------------------------
+// 2. COMPUTE MESSAGES
+// -------------------------------------------
+Print("\n--- Compute Messages ---");
+Compute("Initializing report generation...");
+Compute("Processing data...");
+Compute("Finalizing...");
+
+// -------------------------------------------
+// 3. EXPORT REPORTS (ALL FORMATS)
+// -------------------------------------------
+Print("\n--- Export Reports ---");
+
+Print("\nExporting to JSON...");
+Export_Report("json");
+
+Print("\nExporting to TXT...");
+Export_Report("txt");
+
+Print("\nExporting to HTML...");
+ExportHTMLReport();
+
+// -------------------------------------------
+// 4. SHOW VARIABLES
+// -------------------------------------------
+Print("\n--- Current Variables ---");
+--vars
+
+// -------------------------------------------
+// 5. CLEAR REPORT
+// -------------------------------------------
+Print("\n--- Clear Report ---");
+ClearReport();
+Print("Report cleared");
+
+// -------------------------------------------
+// 6. VERIFY CLEAR
+// -------------------------------------------
+Print("\n--- Verify Report Cleared ---");
+--vars
+
+Print("\n=== REPORTING & UTILITIES COMPLETE ===");

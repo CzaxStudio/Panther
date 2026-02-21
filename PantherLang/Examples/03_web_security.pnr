@@ -1,0 +1,58 @@
+// ===========================================
+// PANTHER WEB SECURITY - COMPLETE
+// ===========================================
+
+Print("=== WEB SECURITY TESTING ===");
+
+var target = "example.com";
+var testURL = "https://" + target;
+
+Print("Target: " + target);
+Print("");
+
+// -------------------------------------------
+// 1. SERVER INFORMATION
+// -------------------------------------------
+Print("--- Server Fingerprinting ---");
+WebFingerprint(target);
+
+// -------------------------------------------
+// 2. SECURITY HEADERS AUDIT
+// -------------------------------------------
+Print("\n--- Security Headers Audit ---");
+HTTPSecurityAudit(target);
+
+Print("\n--- Headers Security Check ---");
+CheckHeadersSecurity(target);
+
+Print("\n--- HTTP Headers (Full) ---");
+HTTP_Headers(target);
+
+// -------------------------------------------
+// 3. SSL/TLS SECURITY
+// -------------------------------------------
+Print("\n--- SSL Certificate ---");
+SSL_Info(target);
+
+Print("\n--- SSL Vulnerabilities Check ---");
+CheckSSLvulnerabilities(target);
+
+// -------------------------------------------
+// 4. OPEN REDIRECT TEST
+// -------------------------------------------
+Print("\n--- Open Redirect Check ---");
+CheckOpenRedirect(target);
+
+// -------------------------------------------
+// 5. URL ANALYSIS
+// -------------------------------------------
+Print("\n--- URL Status ---");
+URL_Status(testURL);
+
+// -------------------------------------------
+// 6. COMPLETE WEB RECON
+// -------------------------------------------
+Print("\n--- Complete Web Recon ---");
+Recon(target);
+
+Print("\n=== WEB SECURITY TESTING COMPLETE ===");
