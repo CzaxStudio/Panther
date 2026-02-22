@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="PantherLang\Panther.png" width="320" alt="Panther Security Language Logo">
+  <img src="PantherLang/Panther.png" width="320" alt="Panther Security Language Logo">
 </p>
 
 <h1 align="center">Panther</h1>
